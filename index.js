@@ -29,7 +29,13 @@ async function run() {
     const jobApplications = client.db("career-code").collection("applications");
     // jobs api
     app.get("/jobs", async (req, res) => {
-      const result = await jobCollection.find().toArray();
+      const email = req.query.email;
+      // console.log(email);
+      const query = {};
+      if (email) {
+        query.hr_email = email;
+      }
+      const result = await jobCollection.find(query).toArray();
       res.send(result);
     });
     app.post("/jobs", async (req, res) => {
