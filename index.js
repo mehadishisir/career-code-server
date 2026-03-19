@@ -62,6 +62,7 @@ async function run() {
       const result = await jobApplications.find(query).toArray();
       res.send(result);
     });
+    app.get("/applications/job/:id", async (req, res) => {});
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
